@@ -1,0 +1,36 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  top:0px;
+  left:0px;
+}
+body {
+  background-image: url("images/pages.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pageL {
+  position: fixed;
+  width: 35%;
+  margin-left: 6%;
+  margin-top: 5%;
+  height:80%;
+  top:0px;
+  left:0px;
+  float: left;
+  overflow: hidden;
+  border: 2px solid red;
+}
+.pageR {
+  position: fixed;
+  width: 35%;
+  margin-left: 58%;
+  margin-top: 5%;
+  height:80%;
+  top:0px;
+  left:0px;
+  float: right;
+  overflow: hidden;
+  border: 2px solid green;
+}
