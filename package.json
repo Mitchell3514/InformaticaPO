@@ -1,0 +1,43 @@
+{
+  "name": "sprookjesboek",
+  "version": "1.0.0",
+  "description": "A dutch website about fairy tales.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitchell3514/InformaticaPO.git"
+  },
+  "keywords": [
+    "fairytale",
+    "puzzle",
+    "dutch"
+  ],
+  "author": "Mitchell Rademaker, Thomas v Dam, Hanjo Claassen, Diana den Boer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mitchell3514/InformaticaPO/issues"
+  },
+  "homepage": "https://github.com/mitchell3514/InformaticaPO#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-sass": "^3.1.0",
+    "jade": "^1.11.0",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.4"
+  }
+}

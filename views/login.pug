@@ -1,0 +1,19 @@
+html
+  head
+    title sprookjesboek login
+    link(rel='stylesheet' href='css/unauth.css')
+    
+  body
+    #container
+      .placeholder
+        h1 login
+        form(action='' method='post')
+          label username
+            input#username(type='text')
+          label password
+            input#password(type='password')  
+          input.button(type='submit' value='Login!')
+          a(href='/signup') Signup
+          -if (loginMessage)
+            p #{loginMessage}
+        
