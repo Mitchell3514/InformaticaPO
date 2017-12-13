@@ -9,9 +9,9 @@ html
         h1 login
         form(action='' method='post')
           label username
-            input#username(type='text')
+            input#username(type='text' name='username')
           label password
-            input#password(type='password')  
+            input#password(type='password' name='password')  
           input.button(type='submit' value='Login!')
           a(href='/signup') Signup
           -if (loginMessage)
