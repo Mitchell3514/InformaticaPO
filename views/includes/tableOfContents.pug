@@ -1,0 +1,8 @@
+- let chapters = {1: 'Spullen voor grootmoeder', 2: 'Op weg naar grootmoeder', 3: 'Hans en Grietje', 4: 'Sneeuwwittje en de dwergen', 5: 'De redding van Roodkapje', 6: 'Het einde'}
+
+h1 Inhoudsopgave
+ul
+  each val, index in chapters
+    -let numb = index
+    -if (index == 5) {numb = 6} else if (index == 6) {numb = 8}
+    li(id = numb)= index + '. ' + val

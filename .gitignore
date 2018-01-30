@@ -1,6 +1,2 @@
-
-config/routes/routes.js
-config/database.js
-config/passport.js
-database/userschema.mwb
-information.js
+.gitignore
+/node_modules/

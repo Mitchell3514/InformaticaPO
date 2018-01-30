@@ -1,1 +1,47 @@
 html
+  head
+    -if (htmlTitleMessage)
+      title #{htmlTitleMessage}
+    -else
+      title Het sprookjesboek
+    link(rel='stylesheet' href='css/index.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Great+Vibes')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Niconne')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+    
+  body
+    #container
+      #page1.page
+        #goBack.btn
+        #area1.area
+          .index
+            include includes/tableOfContents.pug  
+          #startOverContainer
+            ul
+              li#startOver
+                button Begin opnieuw
+          #story
+            h1
+            p
+          #gameLeft.game
+            include includes/game.pug
+        
+      
+      #page2.page
+        #goForward.btn
+        #area2.area
+          .index
+            h1 Uitleg
+            p Dit is een sprookjesboek waarbij je onderweg spellen kunt doen om mee te helpen in het verhaal. Eenmaal in een verhaal klik je links om terug te keren naar de inhoudsopgave en rechts om verder te gaan.
+          #continue
+            p
+          #gameRight.game
+            include includes/game.pug
+                
+    footer
+      script(src= 'js/jquery.min.js')
+      script(src= 'js/index.js')
+    
+  video(autoplay muted loop)#video
+    source(src='assets/vid.mp4' type='video/mp4')

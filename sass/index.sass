@@ -1,0 +1,122 @@
+*
+  margin: 0
+  padding: 0
+
+video
+  position: absolute
+  width: 100vw
+  height: 100vh
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  object-fit: fill
+  z-index: -100
+
+#container
+  height: 100vh
+  width: 90vw
+  margin: auto
+
+.page
+  width: 50%
+  height: 100%
+  overflow: hidden
+  float: left
+
+.area
+  width: 60%
+  display: none
+
+#area1
+    margin: 15vh auto
+
+#area2
+    margin: 15vh 5vw 15vh 5vw
+
+.index
+  position: relative
+
+.index h1, #story h1
+  text-align: center
+  padding-bottom: 5vh
+
+ul
+  list-style-type: none
+  font-size: 1.5em
+
+li
+  margin: 1vh 0
+  box-shadow: 0 3px 10px 2px #141414
+  border-color: black
+  background-color: rgba(16,16,16, 0.2)
+  padding: 1vh 1vw
+  cursor: pointer
+
+li:hover
+  box-shadow: 0 5px 15px 2px #141414
+
+li button
+  border: none
+  outline: none
+  background: none
+  cursor: pointer
+  padding: 0
+  font-family: inherit
+  font-size: 1em
+  box-sizing: border-box
+  width: 100%
+  text-align: left
+
+#story
+  display: none
+
+#continue
+  display: none
+
+h1
+  text-align: center
+  font-size: 3em
+  font-family: 'Great Vibes', cursive
+  @media screen and (max-width: 1200px)
+    font-size: 2em
+
+p
+  font-size: 1.8em
+  font-family: 'Niconne', cursive
+  @media screen and (max-width: 1400px)
+    font-size: 1.35em
+
+#gameLeft
+  display: none
+
+// No use of class for easy access in js
+#gameRight
+  display: none
+
+.game p
+  padding-bottom: 5vh
+
+.btn
+  position: absolute
+  height: 100vh
+  cursor: pointer
+  display: none
+  justify-content: center
+  align-items: center
+
+#goBack
+  left: 0
+  width: 10vw
+
+#goForward
+  right: 0
+  width: 15vw
+
+#startOverContainer
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+
+#startOver
+  display: none
+  width: 60%
