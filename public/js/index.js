@@ -11,6 +11,7 @@ $(document).ready(() => {
 
   let areas = document.getElementsByClassName('area');
   let index = document.getElementsByClassName('index');
+  let bonus = document.getElementById(-1);
   let story = document.getElementById('story');
   let conti = document.getElementById('continue');
   let gameLeft = document.getElementById('gameLeft');
@@ -33,6 +34,17 @@ $(document).ready(() => {
     let areas = document.getElementsByClassName('area');
     $(areas).fadeIn(inTime);
   }, 5100);
+
+  let bonusAccess = false;
+  let ce = document.cookie;
+  if (ce) {
+    if (ce[7] === 't') {bonusAccess = true;}
+  } else {
+    ce = 'bonus=false;';
+  }
+  if (!bonusAccess) {
+    $(bonus).hide();
+  }
 
   $('li').on({
     "click": (event) => {
@@ -100,11 +112,12 @@ $(document).ready(() => {
             break;
           case gameRight:
             $(gameRight).children('p').html(stories[c].gameText);
-            $(gameRight).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`)
+            $(gameRight).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
             break;
           case gameLeft:
+            c = c - 1
             $(gameLeft).children('p').html(stories[c].gameText);
-            $(gameLeft).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`)
+            $(gameLeft).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
             break;
         }
       })
@@ -120,10 +133,17 @@ $(document).ready(() => {
 
     if (!chap) {chap = 0}
 
-    if (chap == 0) {
+    if (chap == -1) {
+
+    } else if (chap == 0) {
       setTimeout(() => {
         $(index).fadeIn(inTime);
       }, outTime)
+      if (!bonusAccess) {
+        $(bonus).hide();
+      } else {
+        $(bonus).fadeIn(inTime);
+      }
     } else if (chap == 2) {
       render = [story];
       changeItems(render, chap);
@@ -142,6 +162,8 @@ $(document).ready(() => {
       changeItems(render, chap);
       renderItems(render, t);
     } else if (chap > chapterCount) {
+      ce = 'bonus=true;';
+      bonusAccess = true;
       video.play();
       setTimeout(() => {
         video.pause();
