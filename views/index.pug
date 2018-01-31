@@ -29,6 +29,8 @@ html
             p
           #gameLeft.game
             include includes/game.pug
+          #bonus
+            include includes/bonus.pug
         
       
       #page2.page
@@ -46,5 +48,5 @@ html
       script(src= '/js/jquery.min.js')
       script(src= '/js/index.js')
     
-  video(autoplay muted loop)#video
+  video(muted loop)#video
     source(src='/assets/vid.mp4' type='video/mp4')

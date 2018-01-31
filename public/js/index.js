@@ -9,52 +9,61 @@ $(document).ready(() => {
   let first = true;
   let chapterCount = 8;
 
-  let areas = document.getElementsByClassName('area');
-  let index = document.getElementsByClassName('index');
-  let bonus = document.getElementById(-1);
-  let story = document.getElementById('story');
-  let conti = document.getElementById('continue');
-  let gameLeft = document.getElementById('gameLeft');
-  let gameRight = document.getElementById('gameRight');
-  let gameFull = document.getElementsByClassName('gameFull');
-  let gameFrame = document.getElementById('gameFrame')
-  let gameParagraph = document.getElementsByClassName('gameParagraph');
-  let btns = document.getElementsByClassName('btn');
-  let leftArrow = document.getElementById('leftArrow');
-  let rightArrow = document.getElementById('rightArrow');
-  let goBack = document.getElementById('goBack');
-  let goForward = document.getElementById('goForward');
-  let startOver = document.getElementById('startOver');
-  let video = document.getElementById('video');
+  const areas = document.getElementsByClassName('area');
+  const index = document.getElementsByClassName('index');
+  const bonusIndex = document.getElementById(-1);
+  const story = document.getElementById('story');
+  const conti = document.getElementById('continue');
+  const gameLeft = document.getElementById('gameLeft');
+  const gameRight = document.getElementById('gameRight');
+  const gameFull = document.getElementsByClassName('gameFull');
+  const gameFrame = document.getElementById('gameFrame')
+  const gameParagraph = document.getElementsByClassName('gameParagraph');
+  const btns = document.getElementsByClassName('btn');
+  const goBack = document.getElementById('goBack');
+  const goForward = document.getElementById('goForward');
+  const startOver = document.getElementById('startOver');
+  const video = document.getElementById('video');
+  const bonus = document.getElementById('bonus');
 
   let change = [];
-  let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns];
+  let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns, bonus];
   let render = [];
 
-  setTimeout(() => {
-    video.pause();
+  let loadTime = 200;
+  let playTime = 5050
+  video.load();
 
-    let areas = document.getElementsByClassName('area');
-    $(areas).fadeIn(inTime);
-  }, 5100);
+  setTimeout(() => {
+    video.play();
+    setTimeout(() => {
+      video.pause();
+
+      let areas = document.getElementsByClassName('area');
+      $(areas).fadeIn(inTime);
+    }, playTime);
+  }, loadTime)
 
   let bonusAccess = false;
-  let ce = document.cookie;
-  if (ce) {
-    if (ce[7] === 't') {bonusAccess = true;}
+  if (document.cookie.length < 3) {
+    document.cookie = 'bonus=false';
+  } else if (document.cookie[6] == 't') {
+    bonusAccess = true;
   } else {
-    ce = 'bonus=false;';
+    $(bonusIndex).hide();
   }
-  if (!bonusAccess) {
-    $(bonus).hide();
-  }
+
+
+
 
   $('li').on({
     "click": (event) => {
-      if (!event.target.id && $(event.target).hasClass('game')) {
-        setTimeout(() => {
-          $(gameFrame).css({display: 'grid'});
-        }, 100)
+      if ($(event.target).hasClass('bonusGame')) {
+        let gameID = event.target.id;
+        $(gameFrame).html(`<iframe id="iframe" allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+gameID+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
+        renderGame();
+      } else if (!event.target.id && $(event.target).hasClass('game')) {
+        renderGame();
       } else {
         currentChapter = event.target.id;
         $(areas).fadeOut(outTime, () => {
@@ -68,7 +77,7 @@ $(document).ready(() => {
           setTimeout(() => {
             video.pause();
             renderPage(currentChapter);
-          }, 5100)
+          }, playTime)
         } else {
           renderPage(currentChapter);
         }
@@ -79,7 +88,12 @@ $(document).ready(() => {
   $(document).click(event => {
     if (!$(event.target).closest('#iframe').length) {
       if ($(gameFrame).is(':visible')) {
-        $(gameFrame).fadeOut(outTime);
+        $(gameFrame).animate({
+          opacity: [0, 'linear']
+        }, outTime, () => {
+          $(gameFrame).hide();
+          $(btns).show();
+        })
       }
     }
   })
@@ -98,7 +112,15 @@ $(document).ready(() => {
     }
   })
 
-  $()
+  renderGame = () => {
+    $(btns).hide()
+    setTimeout(() => {
+      $(gameFrame).css({display: 'grid'});
+      $(gameFrame).animate({
+        opacity: [1, 'linear']
+      }, inTime)
+    }, 100)
+  }
 
 
   renderItems = (r, t) => {
@@ -146,31 +168,41 @@ $(document).ready(() => {
       $(item).fadeOut(outTime);
     });
 
+    if (bonusAccess) {
+      $(bonusIndex).show();
+    }
+    $(conti).children('p').css({
+      'font-family': 'Niconne',
+      'font-size': '1.8em'
+    })
+
     let t = inTime;
 
     if (!chap) {chap = 0}
 
     if (chap == -1) {
-
+      render = [goBack, bonus];
+      renderItems(render, t);
+      $(conti).children('p').html(`Deze website.. of beter gezegd web app werkt bijna volledig op javascript. De pug(html) zorgt voor een structuur, de sass(css) voor de layout en visuele basissen en de javascript(jquery) zorgt voor de animaties en werkende knoppen. Daarnaast runt de website op een vps doormiddel van een nodejs(javascript framework) server die via een reverse proxy server verbonden is met sprookjesboek.tk <br/><br/>Door javascript te gebruiken inplaats van meerdere webpaginas bespaar je op de hoeveelheid te downloaden bestanden en de grootte ervan. Het kost meer resources op de computer waar de site open staat, maar bespaart een grote hoeveelheid get/post requests naar de server.<br/><br/>Het belangrijkste onderdeel van de site zijn de animaties. Deze zijn gedaan doormiddel van jQuery. jQuery is een javascript library die helpt om met de DOM(Document Object Model) te werken en veel mogelijkheden qua animaties biedt.`);
+      $(conti).children('p').css({
+        'font-family': 'Times New Roman',
+        'font-size': '1em'
+      })
+      $(conti).fadeIn(inTime);
     } else if (chap == 0) {
       setTimeout(() => {
         $(index).fadeIn(inTime);
       }, outTime)
-      if (!bonusAccess) {
-        $(bonus).hide();
-      } else {
-        $(bonus).fadeIn(inTime);
-      }
     } else if (chap == 2) {
       render = [story];
       changeItems(render, chap);
       renderItems(render, t);
-    } else if (chap == 4 || chap == 6) {
+    } else if (chap == 5 || chap == 6) {
       render = [story, conti];
       t += contiTime;
       changeItems(render, chap);
       renderItems(render, t);
-    } else if (chap == 5 || chap == 7) {
+    } else if (chap == 7) {
       render = [gameLeft];
       changeItems(render, chap);
       renderItems(render, t);
@@ -179,14 +211,14 @@ $(document).ready(() => {
       changeItems(render, chap);
       renderItems(render, t);
     } else if (chap > chapterCount) {
-      ce = 'bonus=true;';
+      document.cookie = 'bonus=true';
       bonusAccess = true;
       video.play();
       setTimeout(() => {
         video.pause();
         render = [startOver];
         renderItems(render, t);
-      }, 1100);
+      }, 6200 - playTime);
     } else {
       render = [story, gameRight];
       changeItems(render, chap);
@@ -217,10 +249,17 @@ module.exports={
   },
   "4": {
     "title": "Sneeuwwitje en de dwergen",
-    "text": `Toen Sneeuwwitje alle zeven dwergen weer had gevonden met Roodkapje.<br/>Vervolgde Roodkapje haar reis naar grootmoeder. <br/>Toen Roodkapje bij grootmoeder aankwam stond de deur open. <br/>Roodkapje liep meteen naar boven en vond oma daar in bed. <br/>"O grootmoeder, wat heb je grote oren!" - <br/>"Dat is om je beter te kunnen horen." - <br/>"Maar grootmoeder, wat heb je grote ogen!" - <br/>"Dat is om je beter te kunnen zien." - `,
-    "continue": `<br/>"Maar grootmoeder, wat heb je grote handen!" - <br/>"Dat is om je beter te kunnen pakken." - <br/>"Maar grootmoeder, wat heb je een verschrikkelijk grote bek!" - <br/>"Dat is om je beter op te kunnen opeten."<br/>En nauwelijks had de wolf dat gezegd of hij sprong uit bed en verslond het arme Roodkapje in één hap.`,
+    "text": `Toen Hans en Grietje weer veilig thuis kwamen bleek hun moeder gestorven te zijn en ze leefden nog lang en gelukkig met hun vader. Roodkapje vervolgde toen haar weg op naar grootmoeder. Na een tijdje kwam Roodkapje een meisje tegen genaamd Sneeuwwitje. Sneeuwwitje vertelde dat zij haar huisgenootjes kwijt was die ook wel \`de zeven dwergen’ genoemd werden. Roodkapje vertelde dat ze wel even tijd had om te helpen zoeken.`,
+    "continue": ``,
     "gameText": "Help Sneeuwwitje met het vinden van de zeven dwergen!",
     "gameCode": "200685926"
+  },
+  "5": {
+    "title": "Bij grootmoeder",
+    "text": `Toen Sneeuwwitje alle zeven dwergen weer had gevonden met Roodkapje.<br/>Vervolgde Roodkapje haar reis naar grootmoeder. <br/>Toen Roodkapje bij grootmoeder aankwam stond de deur open. <br/>Roodkapje liep meteen naar boven en vond oma daar in bed. <br/>"O grootmoeder, wat heb je grote oren!" - <br/>"Dat is om je beter te kunnen horen." - <br/>"Maar grootmoeder, wat heb je grote ogen!" - <br/>"Dat is om je beter te kunnen zien." - `,
+    "continue": `<br/>"Maar grootmoeder, wat heb je grote handen!" - <br/>"Dat is om je beter te kunnen pakken." - <br/>"Maar grootmoeder, wat heb je een verschrikkelijk grote bek!" - <br/>"Dat is om je beter op te kunnen opeten."<br/>En nauwelijks had de wolf dat gezegd of hij sprong uit bed en verslond het arme Roodkapje in één hap.`,
+    "gameText": "",
+    "gameCode": ""
   },
   "6": {
     "title": "De redding van Roodkapje",
