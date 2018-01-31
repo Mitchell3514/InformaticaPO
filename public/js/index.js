@@ -16,6 +16,9 @@ $(document).ready(() => {
   let conti = document.getElementById('continue');
   let gameLeft = document.getElementById('gameLeft');
   let gameRight = document.getElementById('gameRight');
+  let gameFull = document.getElementsByClassName('gameFull');
+  let gameFrame = document.getElementById('gameFrame')
+  let gameParagraph = document.getElementsByClassName('gameParagraph');
   let btns = document.getElementsByClassName('btn');
   let leftArrow = document.getElementById('leftArrow');
   let rightArrow = document.getElementById('rightArrow');
@@ -25,7 +28,7 @@ $(document).ready(() => {
   let video = document.getElementById('video');
 
   let change = [];
-  let unRender = [index, gameLeft, gameRight, story, conti, btns];
+  let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns];
   let render = [];
 
   setTimeout(() => {
@@ -48,24 +51,38 @@ $(document).ready(() => {
 
   $('li').on({
     "click": (event) => {
-      currentChapter = event.target.id;
-      $(areas).fadeOut(outTime, () => {
-        $(areas).fadeIn(inTime);
-      });
-      if (!currentChapter) {
-        currentChapter = 0;
-        $(startOver).fadeOut(100);
-        video.load();
-        video.play();
+      if (!event.target.id && $(event.target).hasClass('game')) {
         setTimeout(() => {
-          video.pause();
-          renderPage(currentChapter);
-        }, 5100)
+          $(gameFrame).css({display: 'grid'});
+        }, 100)
       } else {
-        renderPage(currentChapter);
+        currentChapter = event.target.id;
+        $(areas).fadeOut(outTime, () => {
+          $(areas).fadeIn(inTime);
+        });
+        if (!currentChapter) {
+          currentChapter = 0;
+          $(startOver).fadeOut(100);
+          video.load();
+          video.play();
+          setTimeout(() => {
+            video.pause();
+            renderPage(currentChapter);
+          }, 5100)
+        } else {
+          renderPage(currentChapter);
+        }
       }
     }
   });
+
+  $(document).click(event => {
+    if (!$(event.target).closest('#iframe').length) {
+      if ($(gameFrame).is(':visible')) {
+        $(gameFrame).fadeOut(outTime);
+      }
+    }
+  })
 
   $(goForward).on({
     "click": () => {
@@ -111,13 +128,13 @@ $(document).ready(() => {
             $(conti).children('p').html(stories[c].continue);
             break;
           case gameRight:
-            $(gameRight).children('p').html(stories[c].gameText);
-            $(gameRight).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
+            $(gameParagraph).html(stories[c].gameText);
+            $(gameFrame).html(`<iframe id="iframe" allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
             break;
           case gameLeft:
             c = c - 1
-            $(gameLeft).children('p').html(stories[c].gameText);
-            $(gameLeft).children('div').html(`<iframe allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
+            $(gameParagraph).html(stories[c].gameText);
+            $(gameFrame).html(`<iframe id="iframe" allowtransparency="true" width="485" height="402" src="//scratch.mit.edu/projects/embed/`+stories[c].gameCode+`/?autostart=false" frameborder="0" allowfullscreen></iframe>`);
             break;
         }
       })

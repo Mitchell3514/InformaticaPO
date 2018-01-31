@@ -38,10 +38,6 @@ video {
 .index {
   position: relative; }
 
-.index h1, #story h1 {
-  text-align: center;
-  padding-bottom: 5vh; }
-
 ul {
   list-style-type: none;
   font-size: 1.5em; }
@@ -80,6 +76,7 @@ li button {
 
 h1 {
   text-align: center;
+  padding-bottom: 5vh;
   font-size: 3em;
   font-family: 'Great Vibes', cursive; }
   @media screen and (max-width: 1200px) {
@@ -101,6 +98,22 @@ p {
 
 .game p {
   padding-bottom: 5vh; }
+
+#gameFrame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  -webkit-box-shadow: inset 0 0 100px #161616;
+          box-shadow: inset 0 0 100px #161616;
+  background-color: rgba(16, 16, 16, 0.5);
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s; }
+
+iframe {
+  margin: auto; }
 
 .btn {
   position: absolute;
