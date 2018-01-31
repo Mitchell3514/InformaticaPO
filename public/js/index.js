@@ -32,7 +32,7 @@ $(document).ready(() => {
   let render = [];
 
   let loadTime = 200;
-  let playTime = 5050
+  let playTime = 5000
   video.load();
 
   setTimeout(() => {
