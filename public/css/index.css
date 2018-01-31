@@ -148,3 +148,8 @@ iframe {
 
 #bonus {
   display: none; }
+
+#bonusText {
+  display: none;
+  font-family: 'New Times Roman';
+  font-size: 0.8em; }

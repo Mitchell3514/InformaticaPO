@@ -25,9 +25,10 @@ $(document).ready(() => {
   const startOver = document.getElementById('startOver');
   const video = document.getElementById('video');
   const bonus = document.getElementById('bonus');
+  const bonusText = document.getElementById('bonusText');
 
   let change = [];
-  let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns, bonus];
+  let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns, bonus, bonusText];
   let render = [];
 
   let loadTime = 200;
@@ -171,10 +172,6 @@ $(document).ready(() => {
     if (bonusAccess) {
       $(bonusIndex).show();
     }
-    $(conti).children('p').css({
-      'font-family': 'Niconne',
-      'font-size': '1.8em'
-    })
 
     let t = inTime;
 
@@ -183,12 +180,8 @@ $(document).ready(() => {
     if (chap == -1) {
       render = [goBack, bonus];
       renderItems(render, t);
-      $(conti).children('p').html(`Deze website.. of beter gezegd web app werkt bijna volledig op javascript. De pug(html) zorgt voor een structuur, de sass(css) voor de layout en visuele basissen en de javascript(jquery) zorgt voor de animaties en werkende knoppen. Daarnaast runt de website op een vps doormiddel van een nodejs(javascript framework) server die via een reverse proxy server verbonden is met sprookjesboek.tk <br/><br/>Door javascript te gebruiken inplaats van meerdere webpaginas bespaar je op de hoeveelheid te downloaden bestanden en de grootte ervan. Het kost meer resources op de computer waar de site open staat, maar bespaart een grote hoeveelheid get/post requests naar de server.<br/><br/>Het belangrijkste onderdeel van de site zijn de animaties. Deze zijn gedaan doormiddel van jQuery. jQuery is een javascript library die helpt om met de DOM(Document Object Model) te werken en veel mogelijkheden qua animaties biedt.`);
-      $(conti).children('p').css({
-        'font-family': 'Times New Roman',
-        'font-size': '1em'
-      })
-      $(conti).fadeIn(inTime);
+      $(bonusText).children('p').html(`Deze website.. of beter gezegd web app werkt bijna volledig op javascript. De pug(html) zorgt voor een structuur, de sass(css) voor de layout en visuele basissen en de javascript(jquery) zorgt voor de animaties en werkende knoppen. Daarnaast runt de website op een vps doormiddel van een nodejs(javascript framework) server die via een reverse proxy server verbonden is met sprookjesboek.tk <br/><br/>Door javascript te gebruiken inplaats van meerdere webpaginas bespaar je op de hoeveelheid te downloaden bestanden en de grootte ervan. Het kost meer resources op de computer waar de site open staat, maar bespaart een grote hoeveelheid get/post requests naar de server.<br/><br/>Het belangrijkste onderdeel van de site zijn de animaties. Deze zijn gedaan doormiddel van jQuery. jQuery is een javascript library die helpt om met de DOM(Document Object Model) te werken en veel mogelijkheden qua animaties biedt.`);
+      $(bonusText).fadeIn(inTime);
     } else if (chap == 0) {
       setTimeout(() => {
         $(index).fadeIn(inTime);
