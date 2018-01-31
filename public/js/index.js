@@ -85,6 +85,7 @@ $(document).ready(() => {
           alertify.notify('Klik links of rechts om van pagina te wijzigen.',
            'notify',
             10)
+          firstTime = false;
         }
         $(areas).fadeOut(outTime, () => {
           $(areas).fadeIn(inTime);
@@ -190,6 +191,8 @@ $(document).ready(() => {
 
     if (bonusAccess) {
       $(bonusIndex).show();
+    } else {
+      $(bonusIndex).hide();
     }
 
     let t = inTime;
