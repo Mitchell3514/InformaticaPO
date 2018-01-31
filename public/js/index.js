@@ -246,7 +246,7 @@ module.exports={
   "1": {
     "title": "Spullen voor grootmoeder",
     "text": "Er was eens een meisje genaamd Roodkapje.<br/>Een keer vroeg de moeder van Roodkapje of Roodkapje koekjes en wat te drinken naar grootmoeder zou willen brengen want grootmoeder was ziek.",
-    "gameText": "Help Roodkapje met het verzamelen van de koekjes voor grootmoeder!",
+    "gameText": "Help Roodkapje met het verzamelen van de koekjes voor grootmoeder. Doe dit door de koekjes op te vangen met het mandje! Gebruik je pijltjestoetsen.",
     "gameCode": "200540194"
   },
   "2": {
@@ -256,14 +256,14 @@ module.exports={
   "3": {
     "title": "Hans en Grietje",
     "text": "Toen kwam Roodkapje 2 kinderen tegen genaamd Hans en grietje.<br/>Hans en Grietje vertelde dat ze door hun ouders, op het idee van hun moeder, achter gelaten in het bos. En dat ze dit plan hadden afgeluisterd en toen broodkruimels hadden gestrooid. Maar dat de kruimels waren opgegeten door de bosdieren.<br/>Roodkapje hielp toen Hans en Grietje om de weg naar huis te vinden.<br/>",
-    "gameText": "Help Hans en Grietje om de weg naar huis te vinden!",
+    "gameText": "Help Hans en Grietje om de weg naar huis te vinden! Gebruik je pijltjestoetsen en probeer naar de recherkant te komen!",
     "gameCode": "200773505"
   },
   "4": {
     "title": "Sneeuwwitje en de dwergen",
     "text": `Toen Hans en Grietje weer veilig thuis kwamen bleek hun moeder gestorven te zijn en ze leefden nog lang en gelukkig met hun vader. Roodkapje vervolgde toen haar weg op naar grootmoeder. Na een tijdje kwam Roodkapje een meisje tegen genaamd Sneeuwwitje. Sneeuwwitje vertelde dat zij haar huisgenootjes kwijt was die ook wel \`de zeven dwergen’ genoemd werden. Roodkapje vertelde dat ze wel even tijd had om te helpen zoeken.`,
     "continue": ``,
-    "gameText": "Help Sneeuwwitje met het vinden van de zeven dwergen!",
+    "gameText": "Help Sneeuwwitje met het vinden van de zeven dwergen! Klik op de dwergen.",
     "gameCode": "200685926"
   },
   "5": {
@@ -288,7 +288,7 @@ module.exports={
     <br/>"O, wat ben ik bang geweest, wat was het donker in de buik van de wolf!"
     <br/>En toen kwam de oude grootmoeder ook nog levend tevoorschijn, al kon ze haast niet ademen.
     <br/>Roodkapje haalde snel een paar grote stenen die ze in de buik van de wolf kon stoppen`,
-    "gameText": "Help Roodkapje snel met het vinden van stenen om in de buik te stoppen!",
+    "gameText": "Help Roodkapje snel met het vinden van stenen om in de buik te stoppen! Klik op de bladeren en stenen om ze op te pakken!",
     "gameCode": "200764912"
   },
   "8" : {
