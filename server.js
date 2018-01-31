@@ -32,5 +32,6 @@ const router = express.Router();
 
 require('./config/routes/routes.js')(app);
 
-app.listen(port, 'localhost');
-console.log('Server running on: ' + port);
+let domain = 'localhost';
+app.listen(port, domain);
+console.log('Server running on ' + domain + ':' + port);
