@@ -27,7 +27,8 @@ video {
 
 .area {
   width: 60%;
-  display: none; }
+  display: none;
+  max-height: 60vh; }
 
 #area1 {
   margin: 15vh auto; }
