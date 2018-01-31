@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-let stories = require('./stories.json')
+let stories = require('./stories.json');
 
 
 $(document).ready(() => {
@@ -34,6 +34,7 @@ $(document).ready(() => {
     fontRatio: 50
   });
 
+
   let change = [];
   let unRender = [index, gameLeft, gameRight, gameFrame, story, conti, btns, bonus, bonusText];
   let render = [];
@@ -42,18 +43,24 @@ $(document).ready(() => {
   let playTime = 5000
   video.load();
 
-  setTimeout(() => {
-    video.play();
+  startVideo = () => {
     setTimeout(() => {
-      video.pause();
+      video.play();
+      setTimeout(() => {
+        video.pause();
 
-      let areas = document.getElementsByClassName('area');
-      $(areas).fadeIn(inTime);
-    }, playTime);
-  }, loadTime)
+        let areas = document.getElementsByClassName('area');
+        $(areas).fadeIn(inTime);
+      }, playTime);
+    }, loadTime)
+  }
 
+  startVideo();
+
+  let firstTime = false;
   let bonusAccess = false;
   if (document.cookie.length < 3) {
+    firstTime= true;
     document.cookie = 'bonus=false';
   } else if (document.cookie[6] == 't') {
     bonusAccess = true;
@@ -74,6 +81,11 @@ $(document).ready(() => {
         renderGame();
       } else {
         currentChapter = event.target.id;
+        if (firstTime) {
+          alertify.notify('Klik links of rechts om van pagina te wijzigen.',
+           'notify',
+            10)
+        }
         $(areas).fadeOut(outTime, () => {
           $(areas).fadeIn(inTime);
         });
