@@ -61,7 +61,7 @@ $(document).ready(() => {
   let bonusAccess = false;
   if (document.cookie.length < 3) {
     firstTime= true;
-    document.cookie = 'bonus=false';
+    document.cookie = 'bonus=false;max-age=31536000';
   } else if (document.cookie[6] == 't') {
     bonusAccess = true;
   } else {
@@ -226,7 +226,7 @@ $(document).ready(() => {
       changeItems(render, chap);
       renderItems(render, t);
     } else if (chap > chapterCount) {
-      document.cookie = 'bonus=true';
+      document.cookie = 'bonus=true;max-age=31536000';
       bonusAccess = true;
       video.play();
       setTimeout(() => {
