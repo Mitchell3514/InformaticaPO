@@ -61,6 +61,7 @@ $(document).ready(() => {
   let bonusAccess = false;
   if (document.cookie.length < 3) {
     firstTime= true;
+    $(bonusIndex).hide();
     document.cookie = 'bonus=false;max-age=31536000';
   } else if (document.cookie[6] == 't') {
     bonusAccess = true;
